@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Admin from "./Admin";
 import "./App.css";
 import Intro from "./Intro";
 import Login from "./Login";
@@ -18,16 +19,19 @@ function App() {
     <Router>
       <Switch>
         <Route path="/LoginUser">
-          <Login user={"user"}/>
+          <Login user={"user"} />
         </Route>
         <Route path="/LoginMech">
-          <Login user={"mech"}/>
+          <Login user={"mech"} />
+        </Route>
+        <Route path="/LoginAdmin">
+          <Admin/>
         </Route>
         <Route path="/RegisterUser">
-          <Register user={"user"}/>
+          <Register user={"user"} />
         </Route>
         <Route path="/RegisterMech">
-          <Register user={"mech"}/>
+          <Register user={"mech"} />
         </Route>
         <Route path="/">
           <div className="App flex">{showIntro ? <Intro /> : <Welcome />}</div>

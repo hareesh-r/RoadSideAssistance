@@ -13,12 +13,8 @@ const db = mysql.createConnection({
   database: "rsa",
 });
 
-
-app.get("/products", (req, res) => {
-
-  const category = req.query.category;
-
-  db.query("SELECT * FROM products WHERE category = ?", [category], (err, result) => {
+app.get("/getMechanics", (req, res) => {
+  db.query("SELECT * FROM Mechanics", (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -27,11 +23,8 @@ app.get("/products", (req, res) => {
   });
 });
 
-app.get("/users", (req, res) => {
-  const user = req.query.username;
-  const pass = req.query.passwords;
- 
-  db.query("SELECT * FROM users WHERE username = ? AND passwords = ? ", [user, pass], (err, result) => {
+app.get("/getUsers", (req, res) => {
+  db.query("SELECT * FROM User", (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -40,56 +33,69 @@ app.get("/users", (req, res) => {
   });
 });
 
-
-app.get("/category", (req, res) => {
-
-  db.query("SELECT DISTINCT category FROM products", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-
-app.post("/signup", (req, res) => {
-  const username = req.body.username;
-  const password = req.body.passwords;
-
+app.delete("/deleteMechanic/:id", (req, res) => {
+  console.log(req.params.id);
   db.query(
-    "INSERT INTO users (username,passwords) VALUES (?,?)",
-    [username, password],
+    `DELETE FROM Mechanics WHERE mechid = ${req.params.id}`,
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        res.send("Signup Successful");
+        res.send(result);
       }
     }
   );
 });
 
-app.post("/add", (req, res) => {
-  const category = req.body.category;
-  const title = req.body.title;
-  const image = req.body.image;
-  const price = req.body.price;
-
+app.delete("/deleteUser/:id", (req, res) => {
+  console.log(req.params.id);
   db.query(
-    "INSERT INTO products (category,title,price,image) VALUES (?,?,?,?)",
-    [category,title,price,image],
+    `DELETE FROM user WHERE userid = ${req.params.id}`,
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        res.send("Added successfully");
+        res.send(result);
       }
     }
   );
 });
 
+app.post("/addUser", (req, res) => {
+  console.log(req.body);
+  db.query(
+    `INSERT INTO user (username, password, Location, phone_num, email,vehicle_type,vehicle_model,problem) VALUES ('${req.body.Username}', '${req.body.Password}', '${req.body.Location}', '${req.body.Phone}', '${req.body.Email}', '${req.body.VechileType}', '${req.body.VechileModel}', '${req.body.Problem}')`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
 
+app.get("/user", (req, res) => {
+    console.log(req.query);
+    db.query(`SELECT * FROM User where username='${req.query.username}' and password='${req.query.password}'`, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
 
+  app.get("/mech", (req, res) => {
+    console.log(req.query);
+    db.query(`SELECT * FROM Mechanics where username='${req.query.username}' and password='${req.query.password}'`, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
 
 app.listen(3001, () => {
   console.log("Yey, your server is running on port 3001");

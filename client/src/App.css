@@ -6,30 +6,38 @@
   box-sizing: border-box;
   color: white;
   font-family: 'Poppins', sans-serif;
-  
+
 }
-a{
+
+a {
   text-decoration: none;
   color: white;
 }
+
 a img {
   opacity: 0.5;
 }
-a:hover p{
+
+a:hover p {
   color: #00bcd4;
 }
-a:hover img{
+
+a:hover img {
   opacity: 1;
 }
+
 p {
   text-align: center;
 }
+
 .App {
   background-color: #1c1c1c;
 }
-.Login,.Register {
+
+.Login,
+.Register,.Admin {
   background-color: #1c1c1c;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .flex {
@@ -44,7 +52,7 @@ p {
 }
 
 .loaded {
-  transition: 2000ms cubic-bezier(1, 1, 1, 1.28);
+  transition: 1500ms cubic-bezier(1, 1, 1, 1.28);
   transform: translateX(0%) !important;
 }
 
@@ -55,32 +63,41 @@ p {
 .row {
   flex-direction: row;
 }
+
 .welcome-greeting img {
   height: 100px;
 }
+
 .welcome {
   height: 100vh;
 }
-.images-in-row img{
+
+.images-in-row img {
   height: 200px;
   filter: invert(1);
 }
+
 .image-link {
   height: 200px;
 }
+
 .user-img {
   width: 200px;
-    object-fit: contain;
+  object-fit: contain;
   margin-top: 78px;
   margin-bottom: 50px;
   height: 106px !important;
 }
+
 .input-grp {
   justify-content: space-between;
 }
+
 .input-grp h1 {
   margin: 10px;
-}.input-grp input {
+}
+
+.input-grp input {
   padding: 20px;
   width: 300px;
   height: 45px;
@@ -89,10 +106,12 @@ p {
   border-radius: 10px;
   outline: none;
 }
+
 .login-container {
   align-items: end;
 }
-.login-container button {
+
+.login-container button,.Admin button {
   margin: 20px;
   margin-right: 0;
   cursor: pointer;
@@ -101,17 +120,76 @@ p {
   color: #fff;
   border: none;
   border-radius: 20px;
-background: #1c1c1c;
-box-shadow:  9px 9px 29px #111111,
-             -9px -9px 29px #272727;
+  background: #1c1c1c;
+  box-shadow: 9px 9px 29px #111111,
+    -9px -9px 29px #272727;
 }
 
 .login-container button:hover {
   border-radius: 20px;
   background: #1c1c1c;
   box-shadow: inset 9px 9px 29px #111111,
-              inset -9px -9px 29px #272727;
-} 
+    inset -9px -9px 29px #272727;
+}
+
 .Login a {
   color: #00bcd4;
+}
+
+.Login > h1,.Admin > h1 {
+  font-size: 45px;
+  font-weight: 400;
+}
+
+.view-mechanics {
+  padding: 30px;
+  overflow-y: scroll;
+  border-radius: 20px;
+background: #1c1c1c;
+box-shadow: inset 9px 9px 29px #111111,
+            inset -9px -9px 29px #272727;
+}
+.view-mechanics::-webkit-scrollbar {
+  width: 1px;
+}
+.mechanic-card {
+  margin: 30px;
+  padding: 30px;
+  border-radius: 20px;
+background: #1c1c1c;
+box-shadow:  9px 9px 29px #111111,
+             -9px -9px 29px #272727;
+}
+.mechanic-card > div {
+  padding: 20px;
+}
+.mechanic-card {
+  position: relative;
+}
+.mechanic-card > img {
+  filter: invert(1);
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+.content {
+  padding: 10px;
+}
+.left {
+  align-items: start;
+}
+.list-wrapper {
+  display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.Admin{
+  max-height: 100vh;
+}
+.view-mechanics {
+  font-size: 15px;
+  height: 70vh;
+  margin: 20px;
 }
