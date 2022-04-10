@@ -13,7 +13,7 @@ function Admin() {
   const [UserData, setUserData] = useState([]);
   const getMechanics = () => {
     Axios.get("http://localhost:3001/getMechanics")
-      .then((response) => {
+      .then((response) => { 
         setMechData(response.data);
         console.log(response.data);
       })
