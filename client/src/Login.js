@@ -12,7 +12,7 @@ function Login({ user }) {
             params: {
                 username: Username,
                 password: Password
-            }
+            } 
         }
     ).then((response) => {
       if(response.data.length>0){
