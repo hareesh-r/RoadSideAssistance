@@ -6,16 +6,30 @@
   box-sizing: border-box;
   color: white;
   font-family: 'Poppins', sans-serif;
+  
 }
 a{
   text-decoration: none;
   color: white;
+}
+a img {
+  opacity: 0.5;
+}
+a:hover p{
+  color: #00bcd4;
+}
+a:hover img{
+  opacity: 1;
 }
 p {
   text-align: center;
 }
 .App {
   background-color: #1c1c1c;
+}
+.Login,.Register {
+  background-color: #1c1c1c;
+  height: 100vh;
 }
 
 .flex {
@@ -55,7 +69,49 @@ p {
   height: 200px;
 }
 .user-img {
-  margin-top: 80px;
+  width: 200px;
+    object-fit: contain;
+  margin-top: 78px;
   margin-bottom: 50px;
   height: 106px !important;
+}
+.input-grp {
+  justify-content: space-between;
+}
+.input-grp h1 {
+  margin: 10px;
+}.input-grp input {
+  padding: 20px;
+  width: 300px;
+  height: 45px;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+.login-container {
+  align-items: end;
+}
+.login-container button {
+  margin: 20px;
+  margin-right: 0;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+background: #1c1c1c;
+box-shadow:  9px 9px 29px #111111,
+             -9px -9px 29px #272727;
+}
+
+.login-container button:hover {
+  border-radius: 20px;
+  background: #1c1c1c;
+  box-shadow: inset 9px 9px 29px #111111,
+              inset -9px -9px 29px #272727;
+} 
+.Login a {
+  color: #00bcd4;
 }

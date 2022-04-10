@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Intro from "./Intro";
+import Login from "./Login";
+import Register from "./Register";
 import Welcome from "./Welcome";
 
 function App() {
@@ -15,11 +17,21 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/LoginUser">
+          <Login user={"user"}/>
+        </Route>
+        <Route path="/LoginMech">
+          <Login user={"mech"}/>
+        </Route>
+        <Route path="/RegisterUser">
+          <Register user={"user"}/>
+        </Route>
+        <Route path="/RegisterMech">
+          <Register user={"mech"}/>
+        </Route>
         <Route path="/">
           <div className="App flex">{showIntro ? <Intro /> : <Welcome />}</div>
         </Route>
-        <Route path="/Login">{/* Login component  */}</Route>
-        <Route path="/Register">{/* Register component */}</Route>
       </Switch>
     </Router>
   );

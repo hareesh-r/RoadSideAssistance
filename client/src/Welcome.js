@@ -14,13 +14,13 @@ function Welcome() {
 
       <h2>Please Login</h2>
       <div className="images-in-row flex row">
-        <Link to="/Login">
+        <Link to="/LoginUser">
           <div className="flex col image-link">
             <img className="user-img" src={customer} alt="" />
             <p>Customer</p>
           </div>
         </Link>
-        <Link to="/Register">
+        <Link to="/LoginMech">
           <div className="col image-link">
             <img src={mechanic} alt="" />
             <p>Mechanic</p>
