@@ -1,5 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+p {
+  text-align: center;
+}
+.App {
+  background-color: #1c1c1c;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#intro-logo {
+  height: 100vh;
+  transform: translateX(-150%);
+}
+
+.loaded {
+  transition: 2000ms cubic-bezier(1, 1, 1, 1.28);
+  transform: translateX(0%) !important;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.row {
+  flex-direction: row;
+}
+.welcome-greeting img {
+  height: 100px;
+}
+.welcome {
+  height: 100vh;
+}
+.images-in-row img{
+  height: 200px;
+  filter: invert(1);
+}
+.image-link {
+  height: 200px;
+}
+.user-img {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  height: 106px !important;
 }
