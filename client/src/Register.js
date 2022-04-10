@@ -26,14 +26,14 @@ function Register({ user }) {
       VechileModel,
       Problem
     }).then(() => {
-      console.log("added");
+        alert("User Added Successfully");
       window.location.href = "/LoginUser";
     });
   };
   return (
     <div className="Login flex col">
-      {user == "user" ? <h1>Welcome User!</h1> : <h1>Welcome Mechanic!</h1>}
-      {user == "user" ? (
+      {user === "user" ? <h1>Welcome User!</h1> : <h1>Welcome Mechanic!</h1>}
+      {user === "user" ? (
         <>
           <div className="flex col login-container">
             <div className="input-grp flex row">

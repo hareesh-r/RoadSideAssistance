@@ -5,9 +5,8 @@ import Axios from "axios";
 function Login({ user }) {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
-  console.log(user);
   const checkUser = () => {
-    Axios.get(user=="user"?`http://localhost:3001/user`:`http://localhost:3001/mech`, 
+    Axios.get(user==="user"?`http://localhost:3001/user`:`http://localhost:3001/mech`, 
         {
             params: {
                 username: Username,
@@ -17,7 +16,7 @@ function Login({ user }) {
     ).then((response) => {
       if(response.data.length>0){
         console.log(response.data);
-        if(user=="user"){
+        if(user==="user"){
             window.location.href = "/UserDashboard";
         }else{
             window.location.href = "/MechDashboard";
@@ -29,7 +28,7 @@ function Login({ user }) {
   };
   return (
     <div className="Login flex col">
-      {user == "user" ? <h1>Welcome User!</h1> : <h1>Welcome Mechanic!</h1>}
+      {user === "user" ? <h1>Welcome User!</h1> : <h1>Welcome Mechanic!</h1>}
       <div className="flex col login-container">
         <div className="input-grp flex row">
           <h1>Username</h1>
@@ -54,7 +53,7 @@ function Login({ user }) {
       </div>
       <h3>
         Not Registered ?{" "}
-        <Link to={user == "user" ? `/RegisterUser` : `/RegisterMech`}>
+        <Link to={user === "user" ? `/RegisterUser` : `/RegisterMech`}>
           Register
         </Link>
       </h3>

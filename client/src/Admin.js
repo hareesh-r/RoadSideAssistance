@@ -15,7 +15,6 @@ function Admin() {
     Axios.get("http://localhost:3001/getMechanics")
       .then((response) => { 
         setMechData(response.data);
-        console.log(response.data);
       })
       .then(() => {
         setViewMech(!viewMech);
@@ -25,7 +24,6 @@ function Admin() {
     Axios.get("http://localhost:3001/getUsers")
       .then((response) => {
         setUserData(response.data);
-        console.log(response.data);
       })
       .then(() => {
         setViewUser(!viewUser);
@@ -33,13 +31,13 @@ function Admin() {
   };
   const deleteMechanic = (id) => {
     Axios.delete(`http://localhost:3001/deleteMechanic/${id}`).then(()=>{
-        console.log("deleted")
+        window.location.reload();
     })
   }
 
   const deleteUser = (id) => {
     Axios.delete(`http://localhost:3001/deleteUser/${id}`).then(()=>{
-        console.log("deleted")
+        window.location.reload();
     })
 }
   return (
