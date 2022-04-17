@@ -28,4 +28,23 @@ create table user(
     primary key(userid)
 );
 insert into user values(1,'testuser','pass','car','Audi R8','chennai','987654637','user@email.com','not starting'); 
+insert into user values(2,'testuser2','pass2','bike','Revolt RV400','Mumbai','9837465321','user2@email.com','Slow Speed'); 
 select * from user;
+create table request(
+	reqid int auto_increment,
+    request_content varchar(225),
+    userid int not null,
+    mechid int not null,
+    primary key(reqid)
+);
+insert into request values (1,"Kicker not working",1,1);
+select * from request;
+create table feedback(
+	feedid int auto_increment,
+    feedback_content varchar(225),
+    userid int not null,
+    mechid int not null,
+    primary key(feedid)
+);
+insert into feedback values (1,"Very Good Service",1,1);
+select * from feedback;

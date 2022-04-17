@@ -33,6 +33,19 @@ app.get("/getUsers", (req, res) => {
   });
 });
 
+app.get("/getUsersByID", (req, res) => {
+  db.query(
+    `SELECT * FROM User where userid=${req.query.userid}`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 app.delete("/deleteMechanic/:id", (req, res) => {
   console.log(req.params.id);
   db.query(
@@ -75,30 +88,118 @@ app.post("/addUser", (req, res) => {
   );
 });
 
-app.get("/user", (req, res) => {
-    console.log(req.query);
-    db.query(`SELECT * FROM User where username='${req.query.username}' and password='${req.query.password}'`, (err, result) => {
+app.post("/addMech", (req, res) => {
+  console.log(req.body);
+  db.query(
+    `INSERT INTO mechanics (username, password, Location, shop_name, base_cost,phone_num,email) VALUES ('${req.body.Username}', '${req.body.Password}', '${req.body.Location}', '${req.body.Shop}', '${req.body.Cost}', '${req.body.Phone}', '${req.body.Email}')`,
+    (err, result) => {
       if (err) {
         console.log(err);
       } else {
         res.send(result);
       }
-    });
-  });
-
-  app.get("/mech", (req, res) => {
-    console.log(req.query);
-    db.query(`SELECT * FROM Mechanics where username='${req.query.username}' and password='${req.query.password}'`, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
-    });
-  });
-
-app.listen(3001, () => {
-  console.log("Yey, your server is running on port 3001");
+    }
+  );
 });
 
-//npm install express mysql cors nodemon --save
+app.post("/feedback", (req, res) => {
+  console.log(req.body);
+  db.query(
+    `INSERT INTO feedback (feedback_content, userid, mechid) VALUES ('${req.body.feedback_content}', '${req.body.userid}', '${req.body.mechid}')`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/addProblem", (req, res) => {
+  console.log(req.body);
+  db.query(
+    `INSERT INTO request (request_content, userid, mechid) VALUES ('${req.body.request_content}', '${req.body.userid}', '${req.body.mechid}')`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/user", (req, res) => {
+  console.log(req.query);
+  db.query(
+    `SELECT * FROM User where username='${req.query.username}' and password='${req.query.password}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/request", (req, res) => {
+  console.log(req.query);
+  db.query(
+    `SELECT * FROM request where mechid='${req.query.mechid}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/feedback", (req, res) => {
+  console.log(req.query);
+  db.query(
+    `SELECT * FROM feedback where mechid='${req.query.mechid}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/mech", (req, res) => {
+  console.log(req.query);
+  db.query(
+    `SELECT * FROM Mechanics where username='${req.query.username}' and password='${req.query.password}'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.get("/searchMechanic", (req, res) => {
+  console.log(req.query);
+  db.query(
+    `SELECT * FROM Mechanics where username Like '%${req.query.input}%' or location Like'%${req.query.input}%' or email Like'%${req.query.input}%' or shop_name Like'%${req.query.input}%'`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.listen(3001, () => {
+  console.log("Server is running on port 3001");
+});

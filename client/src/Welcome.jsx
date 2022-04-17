@@ -9,7 +9,7 @@ function Welcome() {
     <div className="welcome flex col">
       <div className="welcome-greeting flex row">
         <h1>Welcome to Road Side Assistance</h1>
-        <img src={logo} alt="" />
+        <Link to="/LoginAdmin"><img src={logo} alt="" /></Link>
       </div>
 
       <h2>Please Login</h2>

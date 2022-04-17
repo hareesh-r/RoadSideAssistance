@@ -15,7 +15,6 @@ function Register({ user }) {
   const [Problem, setProblem] = useState("");
   console.log(user);
   const addUser = () => {
-    //add user to database
     Axios.post("http://localhost:3001/addUser", {
       Username,
       Password,
@@ -24,9 +23,9 @@ function Register({ user }) {
       Email,
       VechileType,
       VechileModel,
-      Problem
+      Problem,
     }).then(() => {
-        alert("User Added Successfully");
+      alert("User Added Successfully");
       window.location.href = "/LoginUser";
     });
   };
@@ -47,73 +46,73 @@ function Register({ user }) {
               />
             </div>
             <div
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Password </h1>
-              <input type="password" placeholder="Password" />
+              <input onChange={(e) => {
+                setPassword(e.target.value);
+              }} type="password" placeholder="Password" />
             </div>
 
             <div
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Location </h1>
-              <input type="text" placeholder="Location" />
+              <input onChange={(e) => {
+                setLocation(e.target.value);
+              }} className="location" type="text" placeholder="Location" />
             </div>
 
             <div
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Phone Number </h1>
-              <input type="phone" placeholder="Phone Number" />
+              <input onChange={(e) => {
+                setPhone(e.target.value);
+              }} type="phone" placeholder="Phone Number" />
             </div>
 
             <div
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Email </h1>
-              <input type="email" placeholder="Email" />
+              <input onChange={(e) => {
+                setEmail(e.target.value);
+              }} type="email" placeholder="Email" />
             </div>
 
             <div
-              onChange={(e) => {
-                setVechileType(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Vehicle Type </h1>
-              <input type="text" placeholder="Vehicle Type" />
+              <input onChange={(e) => {
+                setVechileType(e.target.value);
+              }} type="text" placeholder="Vehicle Type" />
             </div>
 
             <div
-              onChange={(e) => {
-                setVechileModel(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Vehicle Model </h1>
-              <input type="text" placeholder="Vehicle Model" />
+              <input onChange={(e) => {
+                setVechileModel(e.target.value);
+              }} type="text" placeholder="Vehicle Model" />
             </div>
 
             <div
-              onChange={(e) => {
-                setProblem(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Problem Description </h1>
-              <input type="text" placeholder="Optional" />
+              <input onChange={(e) => {
+                setProblem(e.target.value);
+              }} type="text" placeholder="Optional" />
             </div>
 
             <button
@@ -142,83 +141,110 @@ function Register({ user }) {
               />
             </div>
             <div
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Password </h1>
-              <input type="password" placeholder="Password" />
+              <input onChange={(e) => {
+                setPassword(e.target.value);
+              }} type="password" placeholder="Password" />
             </div>
 
             <div
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-              className="input-grp flex row"
+
+              className="input-grp flex row location"
             >
               <h1>Location </h1>
-              <input type="text" placeholder="Location" />
+              <div className="flex col right">
+                <input onChange={(e) => {
+                  setLocation(e.target.value);
+                }} className="location" id="location" type="text" placeholder="Location" />
+                <button id="locationbutton" onClick={
+                  () => {
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(showPosition);
+                    }
+                    function showPosition(position) {
+                      document.getElementById("location").value = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
+                      setLocation("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude)
+                    }
+                  }
+                }>Get Device Location</button>
+              </div>
+
             </div>
 
             <div
-              onChange={(e) => {
-                setShop(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Shop Name</h1>
-              <input type="text" placeholder="Shop Name" />
+              <input onChange={(e) => {
+                setShop(e.target.value);
+              }} type="text" placeholder="Shop Name" />
             </div>
 
             <div
-              onChange={(e) => {
-                setCost(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Base Cost </h1>
-              <input type="text" placeholder="Base Cost" />
+              <input onChange={(e) => {
+                setCost(e.target.value);
+              }} type="text" placeholder="Base Cost" />
             </div>
 
             <div
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Phone Number </h1>
-              <input type="phone" placeholder="Phone Number" />
+              <input onChange={(e) => {
+                setPhone(e.target.value);
+              }} type="phone" placeholder="Phone Number" />
             </div>
 
             <div
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+
               className="input-grp flex row"
             >
               <h1>Email </h1>
-              <input type="email" placeholder="Email" />
+              <input onChange={(e) => {
+                setEmail(e.target.value);
+              }} type="email" placeholder="Email" />
             </div>
 
             <button
-              onClick={() =>
+              onClick={() => {
                 console.log(
                   Username +
-                    " " +
-                    Password +
-                    " " +
-                    Email +
-                    " " +
-                    Cost +
-                    " " +
-                    Phone +
-                    " " +
-                    Shop +
-                    " " +
-                    Location
-                )
-              }
+                  " " +
+                  Password +
+                  " " +
+                  Email +
+                  " " +
+                  Cost +
+                  " " +
+                  Phone +
+                  " " +
+                  Shop +
+                  " " +
+                  Location
+                );
+                Axios.post("http://localhost:3001/addMech", {
+                  Username,
+                  Password,
+                  Location,
+                  Shop,
+                  Cost,
+                  Phone,
+                  Email,
+                }).then((res) => {
+                  console.log(res.data);
+                  alert("Mechanic Added Successfully");
+                  window.location.href = "/LoginMech";
+                });
+              }}
             >
               Register
             </button>

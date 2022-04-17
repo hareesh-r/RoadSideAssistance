@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import { UserContext } from "./App";
 import Axios from "axios";
 function Login({ user }) {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+  const { CurrentUser, setCurrentUser } = useContext(UserContext);
+  const { CurrentUserType, setCurrentUserType } = useContext(UserContext);
+  const [IsValidUser, setIsValidUser] = useState(false);
   const checkUser = () => {
-    Axios.get(user==="user"?`http://localhost:3001/user`:`http://localhost:3001/mech`, 
-        {
-            params: {
-                username: Username,
-                password: Password
-            } 
-        }
+    Axios.get(
+      user === "user"
+        ? `http://localhost:3001/user`
+        : `http://localhost:3001/mech`,
+      {
+        params: {
+          username: Username,
+          password: Password,
+        },
+      }
     ).then((response) => {
-      if(response.data.length>0){
+      if (response.data.length > 0) {
         console.log(response.data);
-        if(user==="user"){
-            window.location.href = "/UserDashboard";
-        }else{
-            window.location.href = "/MechDashboard";
-        }
-      }else{
+        setIsValidUser(true);
+        setCurrentUser(response.data[0]);
+        setCurrentUserType(user);
+      } else {
         alert("Invalid Username or Password");
       }
     });
@@ -50,6 +55,20 @@ function Login({ user }) {
           <input type="password" placeholder="Password" />
         </div>
         <button onClick={() => checkUser()}>Login</button>
+        {IsValidUser && user === "user" ? (
+          <Link to={"/UserDashboard"}>
+            <button>Proceed</button>
+          </Link>
+        ) : (
+          ""
+        )}
+        {IsValidUser && user === "mech" ? (
+          <Link to={"/MechDashboard"}>
+            <button>Proceed</button>
+          </Link>
+        ) : (
+          " "
+        )}
       </div>
       <h3>
         Not Registered ?{" "}

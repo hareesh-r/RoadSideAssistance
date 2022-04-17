@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import deleteIcon from "./asset/img/delete.png";
@@ -11,16 +11,16 @@ function Admin() {
   const [viewUser, setViewUser] = useState(false);
   const [MechData, setMechData] = useState([]);
   const [UserData, setUserData] = useState([]);
-  const getMechanics = () => {
+
+  useEffect(() => {
     Axios.get("http://localhost:3001/getMechanics")
-      .then((response) => { 
+      .then((response) => {
         setMechData(response.data);
       })
       .then(() => {
         setViewMech(!viewMech);
       });
-  };
-  const getUsers = () => {
+
     Axios.get("http://localhost:3001/getUsers")
       .then((response) => {
         setUserData(response.data);
@@ -28,21 +28,24 @@ function Admin() {
       .then(() => {
         setViewUser(!viewUser);
       });
-  };
+  }, []);
+
   const deleteMechanic = (id) => {
-    Axios.delete(`http://localhost:3001/deleteMechanic/${id}`).then(()=>{
-        window.location.reload();
-    })
-  }
+    Axios.delete(`http://localhost:3001/deleteMechanic/${id}`).then(() => {
+      alert("Mechanic Deleted Successfully");
+      window.location.reload();
+    });
+  };
 
   const deleteUser = (id) => {
-    Axios.delete(`http://localhost:3001/deleteUser/${id}`).then(()=>{
-        window.location.reload();
-    })
-}
+    Axios.delete(`http://localhost:3001/deleteUser/${id}`).then(() => {
+      alert("User Deleted Successfully");
+      window.location.reload();
+    });
+  };
   return (
     <div className="Admin flex col">
-        <h1>Welcome Admin!</h1>
+      <h1>Welcome Admin!</h1>
       {!Login ? (
         <div className="flex col login-container">
           <div className="input-grp flex row">
@@ -68,8 +71,8 @@ function Admin() {
             onClick={() => {
               if (Username == "Admin" && Password == "Admin@123") {
                 setLogin(true);
-              }else{
-                  alert("Invalid Username or Password");
+              } else {
+                alert("Invalid Username or Password");
               }
             }}
           >
@@ -79,9 +82,9 @@ function Admin() {
       ) : (
         <>
           <div className="list-wrapper">
-            <button onClick={() => getMechanics()}>View Mechanics</button>
-            <button onClick={() => getUsers()}>View Users</button>
-            <Link to="/"><button>Logout</button></Link>
+            <button><Link to="/">
+              Logout
+            </Link></button>
           </div>
 
           <div className="list-wrapper">
@@ -91,7 +94,6 @@ function Admin() {
                   {MechData.map((data, index) => (
                     <div className="mechanic-card flex row" key={index}>
                       <div className="left flex col">
-                          
                         <div className="content">
                           Username : {data.username}
                         </div>
@@ -100,9 +102,13 @@ function Admin() {
                           Location : {data.location}
                         </div>
                       </div>
-                      <img onClick={()=>{
-                          deleteMechanic(data.mechid)
-                      }} src={deleteIcon} alt="" />
+                      <img
+                        onClick={() => {
+                          deleteMechanic(data.mechid);
+                        }}
+                        src={deleteIcon}
+                        alt=""
+                      />
                       <div className="left flex col">
                         <div className="content">
                           Contact Number : {data.phone_num}
@@ -134,19 +140,21 @@ function Admin() {
                         <div className="content">
                           Location : {data.location}
                         </div>
-                        <div className="content">
-                          Problem : {data.problem}
-                        </div>
+                        <div className="content">Problem : {data.problem}</div>
                       </div>
-                      <img onClick={()=>{
-                          deleteUser(data.userid)
-                      }} src={deleteIcon} alt="" />
+                      <img
+                        onClick={() => {
+                          deleteUser(data.userid);
+                        }}
+                        src={deleteIcon}
+                        alt=""
+                      />
                       <div className="left flex col">
                         <div className="content">
                           Contact Number : {data.phone_num}
                         </div>
                         <div className="content">
-                            Vehicle Type : {data.vehicle_type}
+                          Vehicle Type : {data.vehicle_type}
                         </div>
                         <div className="content">
                           Vehicle Model : {data.vehicle_model}
