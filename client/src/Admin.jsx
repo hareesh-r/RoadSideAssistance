@@ -89,6 +89,7 @@ function Admin() {
 
           <div className="list-wrapper">
             <div className="view-mechanics">
+            <h1>Mechanics Data</h1>
               {viewMech ? (
                 <>
                   {MechData.map((data, index) => (
@@ -128,6 +129,7 @@ function Admin() {
               )}
             </div>
             <div className="view-mechanics view-user">
+              <h1>Users Data</h1>
               {viewUser ? (
                 <>
                   {UserData.map((data, index) => (

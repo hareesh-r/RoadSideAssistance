@@ -123,7 +123,7 @@ function Dashboard({ user }) {
         }
         {
           ShowRequest && RequestContent.length === 0 && 
-          <div>No Feedbacks!</div>
+          <div>No Requests!</div>
         }
       </div>
     </div>

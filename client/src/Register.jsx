@@ -57,12 +57,26 @@ function Register({ user }) {
 
             <div
 
-              className="input-grp flex row"
+              className="input-grp flex row location"
             >
               <h1>Location </h1>
-              <input onChange={(e) => {
-                setLocation(e.target.value);
-              }} className="location" type="text" placeholder="Location" />
+              <div className="flex col right">
+                <input onChange={(e) => {
+                  setLocation(e.target.value);
+                }} className="location" id="location" type="text" placeholder="Location" />
+                <button id="locationbutton" onClick={
+                  () => {
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(showPosition);
+                    }
+                    function showPosition(position) {
+                      document.getElementById("location").value = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
+                      setLocation("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude)
+                    }
+                  }
+                }>Get Device Location</button>
+              </div>
+
             </div>
 
             <div
