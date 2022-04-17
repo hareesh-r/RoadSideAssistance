@@ -41,6 +41,7 @@ p {
 .SearchMechanic {
   background-color: #1c1c1c;
   min-height: 100vh;
+padding:20px;
 }
 
 .flex {
