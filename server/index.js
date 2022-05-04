@@ -13,6 +13,8 @@ const db = mysql.createConnection({
   database: "rsa",
 });
 
+db.connect();
+
 app.get("/getMechanics", (req, res) => {
   db.query("SELECT * FROM Mechanics", (err, result) => {
     if (err) {
