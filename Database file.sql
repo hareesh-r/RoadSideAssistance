@@ -37,7 +37,8 @@ create table request(
     mechid int not null,
     primary key(reqid)
 );
-insert into request values (1,"Kicker not working",1,1);
+insert into request values (1,"Wiper not working",1,1);
+insert into request values (2,"Charger Not Working",2,2);
 select * from request;
 create table feedback(
 	feedid int auto_increment,
@@ -47,4 +48,5 @@ create table feedback(
     primary key(feedid)
 );
 insert into feedback values (1,"Very Good Service",1,1);
+insert into feedback values (2,"Smooth Service",2,2);
 select * from feedback;
